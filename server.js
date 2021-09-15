@@ -1,8 +1,10 @@
 const db = require('./db/monitoring');
 const fastify = require('fastify')();
 
-fastify.get('/Monitoring', async(req, res) => {
-	const results = await db.getAllUsers();
+var URL_Prefix = '/api/monitoring'
+
+fastify.get(URL_Prefix + '/users/registered', async(req, res) => {
+	const results = await db.getAllRegisteredUsers();
 	res.code(200).send({ results });
 });
 
