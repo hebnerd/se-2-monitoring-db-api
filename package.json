@@ -1,0 +1,22 @@
+{
+  "name": "master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "fastify": "^3.21.0",
+    "knex": "^0.95.11",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/team-ducks/monitoring-db-api/src/master/"
+  },
+  "author": "",
+  "license": "ISC"
+}
