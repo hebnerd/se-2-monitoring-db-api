@@ -27,76 +27,76 @@ function deleteRegisteredUser(id) {
 
 // OnlineUsers CRUD
 // CREATE functions
-function createOnlineUsers() {
-	return knew('Users_Online').insert(user);
+function createOnlineUser() {
+	return knex('Users_Online').insert(user);
 }
 
 // READ functions
-function getAllOnlineUsers() {
+function getAllOnlineUser() {
 	return knex('Users_Online').select('*');
 }
 
-function getOnlineUsers(id) {
-	return knew('Users_Online').where('ONLINE_ID', id);
+function getOnlineUser(id) {
+	return knex('Users_Online').where('ONLINE_ID', id);
 }
 
 // UPDATE functions
-function updateOnlineUsers(id, user) {
+function updateOnlineUsersid, user) {
 	return knex('Users_Online').where('ONLINE_ID', id).update(user);
 }
 
 // DELETE functions
 function deleteOnlineUsers(id) {
-	return knew('Users_Online').where('ONLINE_ID', id).del();
+	return knex('Users_Online').where('ONLINE_ID', id).del();
 }
 
 // PagesViewed CRUD
 // CREATE functions
 function createPagesViewed() {
-	return knew('Pages_Viewed').insert(user);
+	return knex('Pages_Viewed').insert(user);
 }
 
 // READ functions
 function getAllPagesViewed() {
-	return knew('Pages_Viewed').select('*');
+	return knex('Pages_Viewed').select('*');
 }
 
 function getPagesViewed(id) {
-	return knew('Pages_Viewed').where('PAGE_ID', id);
+	return knex('Pages_Viewed').where('PAGE_ID', id);
 }
 
 // UPDATE functions
 function updatePagesViewed(id, user) {
-	return knew('Pages_Viewed').where('PAGE_ID', id).update(user);
+	return knex('Pages_Viewed').where('PAGE_ID', id).update(user);
 }
 
 // DELETE functions
 function deletePagesViewed(id) {
-	return knew('Pages_Viewed').where('PAGE_ID', id).del();
+	return knex('Pages_Viewed').where('PAGE_ID', id).del();
 }
 // Session CRUD
 // CREATE functions
 function createSession() {
-	return knew('Session').insert(user);
+	return knex('Session').insert(user);
 }
 
 // READ functions
-function getAllSession() {
-	return knew("Session").select('*');
+function getAllSessions() {
+	return knex("Session").select('*');
 }
 
 function getSession(id) {
-	return knew('Session').where('SESSION_ID', id);
+	return knex('Session').where('SESSION_ID', id);
 }
 
 // UPDATE functions
 function updateSession(id, user) {
-	return knew('Session').where('SESSION_ID', id).update(user);
+	return knex('Session').where('SESSION_ID', id).update(user);
 }
 
 // DELETE functions
 function deleteSession(id) {
-	return knew('Session').where('SESSION_ID', id).del();
+	return knex('Session').where('SESSION_ID', id).del();
 }
 
 module.exports = {
