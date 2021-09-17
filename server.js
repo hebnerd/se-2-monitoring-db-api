@@ -43,12 +43,18 @@ fastify.get(URL_Prefix + '/users/online/:id', async (req, res) => {
 
 fastify.post(URL_Prefix + '/users/online', async (req, res) => {
 	const results = await db.createOnlineUser(JSON.parse(req.body));
-	res.code(201).send({ id: results });
+	try{
+		results.length == 1; // If length property exists, no error (User_ID was in Users_Registered)
+		res.code(201).send({ id: results });
+	}
+	catch(err) {
+		res.code(400).send({ 'Constraint violation': 'The User_ID does not exist in Users_Registered' })
+	}
 });
 
 fastify.patch(URL_Prefix + '/users/online/:id', async (req, res) => {
 	const results = await db.updateOnlineUser(req.params.id, JSON.parse(req.body));
-	res.code(200).send({ id: results });
+		res.code(200).send({ id: results });
 });
 
 fastify.delete(URL_Prefix + '/users/online/:id', async (req, res) => {
@@ -63,6 +69,6 @@ fastify.listen(8000, function(err, address){
 		process.exit(1);
 	}
 	else{
-		console.log('[ Server working ]');
+		console.log('[ Server is running on port 8000 ]');
 	}
 });

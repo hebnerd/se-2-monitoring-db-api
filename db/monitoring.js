@@ -2,6 +2,7 @@ const knex = require('./knex');
 
 // RegisteredUsers CRUD
 // CREATE functions
+
 function createRegisteredUser(user) {
 	return knex('Users_Registered').insert(user);
 }
@@ -27,8 +28,18 @@ function deleteRegisteredUser(id) {
 
 // OnlineUsers CRUD
 // CREATE functions
+
 function createOnlineUser(user) {
-	return knex('Users_Online').insert(user);
+	results = knex('Users_Registered').where('USER_ID', user['User_ID']) // Check that user id is valid
+	.returning()
+	.then(
+		function (result) {
+			console.log(result.length);
+			if(result.length != 0)
+				return knex('Users_Online').insert(user);
+		}
+	);
+	return results;
 }
 
 // READ functions
@@ -37,17 +48,17 @@ function getAllOnlineUsers() {
 }
 
 function getOnlineUser(id) {
-	return knex('Users_Online').where('ONLINE_ID', id);
+	return knex('Users_Online').where('User_ID', id);
 }
 
 // UPDATE functions
 function updateOnlineUser(id, user) {
-	return knex('Users_Online').where('ONLINE_ID', id).update(user);
+	return knex('Users_Online').where('User_ID', id).update(user);
 }
 
 // DELETE functions
 function deleteOnlineUser(id) {
-	return knex('Users_Online').where('ONLINE_ID', id).del();
+	return knex('Users_Online').where('User_ID', id).del();
 }
 
 // PagesViewed CRUD
