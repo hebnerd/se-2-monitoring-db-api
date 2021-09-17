@@ -32,7 +32,7 @@ function createOnlineUser() {
 }
 
 // READ functions
-function getAllOnlineUser() {
+function getAllOnlineUsers() {
 	return knex('Users_Online').select('*');
 }
 
@@ -41,12 +41,12 @@ function getOnlineUser(id) {
 }
 
 // UPDATE functions
-function updateOnlineUsersid, user) {
+function updateOnlineUser(id, user) {
 	return knex('Users_Online').where('ONLINE_ID', id).update(user);
 }
 
 // DELETE functions
-function deleteOnlineUsers(id) {
+function deleteOnlineUser(id) {
 	return knex('Users_Online').where('ONLINE_ID', id).del();
 }
 
@@ -105,18 +105,18 @@ module.exports = {
 	getRegisteredUser,
 	updateRegisteredUser,
 	deleteRegisteredUser,
-	createOnlineUsers,
+	createOnlineUser,
 	getAllOnlineUsers,
-	getOnlineUsers,
-	updateOnlineUsers,
-	deleteOnlineUsers,
+	getOnlineUser,
+	updateOnlineUser,
+	deleteOnlineUser,
 	createPagesViewed,
 	getAllPagesViewed,
 	getPagesViewed,
 	updatePagesViewed,
 	deletePagesViewed,
 	createSession,
-	getAllSession,
+	getAllSessions,
 	getSession,
 	updateSession,
 	deleteSession
