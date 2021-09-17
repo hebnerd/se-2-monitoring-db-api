@@ -27,7 +27,7 @@ function deleteRegisteredUser(id) {
 
 // OnlineUsers CRUD
 // CREATE functions
-function createOnlineUser() {
+function createOnlineUser(user) {
 	return knex('Users_Online').insert(user);
 }
 
@@ -52,8 +52,8 @@ function deleteOnlineUser(id) {
 
 // PagesViewed CRUD
 // CREATE functions
-function createPagesViewed() {
-	return knex('Pages_Viewed').insert(user);
+function createPagesViewed(page) {
+	return knex('Pages_Viewed').insert(page);
 }
 
 // READ functions
@@ -66,8 +66,8 @@ function getPagesViewed(id) {
 }
 
 // UPDATE functions
-function updatePagesViewed(id, user) {
-	return knex('Pages_Viewed').where('PAGE_ID', id).update(user);
+function updatePagesViewed(id, page) {
+	return knex('Pages_Viewed').where('PAGE_ID', id).update(page);
 }
 
 // DELETE functions
@@ -76,8 +76,8 @@ function deletePagesViewed(id) {
 }
 // Session CRUD
 // CREATE functions
-function createSession() {
-	return knex('Session').insert(user);
+function createSession(session) {
+	return knex('Session').insert(session);
 }
 
 // READ functions
@@ -90,8 +90,8 @@ function getSession(id) {
 }
 
 // UPDATE functions
-function updateSession(id, user) {
-	return knex('Session').where('SESSION_ID', id).update(user);
+function updateSession(id, session) {
+	return knex('Session').where('SESSION_ID', id).update(session);
 }
 
 // DELETE functions
