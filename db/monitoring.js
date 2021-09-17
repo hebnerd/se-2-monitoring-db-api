@@ -28,13 +28,11 @@ function deleteRegisteredUser(id) {
 
 // OnlineUsers CRUD
 // CREATE functions
-
 function createOnlineUser(user) {
 	results = knex('Users_Registered').where('USER_ID', user['User_ID']) // Check that user id is valid
 	.returning()
 	.then(
 		function (result) {
-			console.log(result.length);
 			if(result.length != 0)
 				return knex('Users_Online').insert(user);
 		}
