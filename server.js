@@ -63,6 +63,66 @@ fastify.delete(URL_Prefix + '/users/online/:id', async (req, res) => {
 });
 //#endregion
 
+//#region Session methods
+fastify.get(URL_Prefix + '/usage/visits', async (req, res) => {
+	const results = await db.getAllSessions();
+	res.code(200).send({ results });
+});
+
+fastify.get(URL_Prefix + '/usage/visits/:id', async (req, res) => {
+	const results = await db.getSession(req.params.id);
+	res.code(200).send({ results });
+});
+
+fastify.post(URL_Prefix + '/usage/visits', async (req, res) => {
+	const results = await db.createSession(JSON.parse(req.body));
+	res.code(201).send({ id: results });
+});
+
+fastify.patch(URL_Prefix + '/usage/visits/:id', async (req, res) => {
+	const results = await db.updateSession(req.params.id, JSON.parse(req.body));
+	res.code(200).send({ id: results });
+});
+
+fastify.delete(URL_Prefix + '/usage/visits/:id', async (req, res) => {
+	const results = await db.deleteSession(req.params.id);
+	res.code(200).send({ success: true });
+});
+//#endregion
+
+//#region Pages_Viewed
+fastify.get(URL_Prefix + '/usage/views', async (req, res) => {
+	const results = await db.getAllPagesViewed();
+	res.code(200).send({ results });
+});
+
+fastify.get(URL_Prefix + '/usage/views/:id', async (req, res) => {
+	const results = await db.getPagesViewed(req.params.id);
+	res.code(200).send({ results });
+});
+
+fastify.post(URL_Prefix + '/usage/views', async (req, res) => {
+	const results = await db.createPagesViewed(JSON.parse(req.body));
+	try {
+		results.length == 1; // If length property exists, no error (Session_ID was in Session)
+		res.code(201).send({ id: results });
+	}
+	catch (err) {
+		res.code(400).send({ 'Constraint violation': 'The Session_ID does not exist in Session' })
+	}
+});
+
+fastify.patch(URL_Prefix + '/usage/views/:id', async (req, res) => {
+	const results = await db.updatePagesViewed(req.params.id, JSON.parse(req.body));
+	res.code(200).send({ id: results });
+});
+
+fastify.delete(URL_Prefix + '/usage/views/:id', async (req, res) => {
+	const results = await db.deletePagesViewed(req.params.id);
+	res.code(200).send({ success: true });
+});
+//#endregion
+
 fastify.listen(8000, function(err, address){
 	if(err){
 		console.log(err);
