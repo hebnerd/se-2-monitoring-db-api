@@ -59,7 +59,7 @@ fastify.post(URL_Prefix + '/users/online', async (req, res) => {
 		res.code(201).send({ id: results });
 	}
 	catch(err) {
-		res.code(400).send({ 'Constraint violation': 'The User_ID does not exist in Users_Registered' })
+		res.code(403).send({ 'Constraint violation': 'The User_ID does not exist in Users_Registered' })
 	}
 });
 
@@ -70,7 +70,7 @@ fastify.patch(URL_Prefix + '/users/online/:id', async (req, res) => {
 		res.code(200).send({ id: req.body['User_ID'] });  // Returning from body in case User_ID was changed (async won't get the updated ID)
 	}
 	catch(err) {
-		res.code(400).send({ 'Constraint violation': 'The User_ID does not exist in Users_Registered' })
+		res.code(403).send({ 'Constraint violation': 'The User_ID does not exist in Users_Registered' })
 	}
 });
 
@@ -131,7 +131,7 @@ fastify.post(URL_Prefix + '/usage/views', async (req, res) => {
 		res.code(201).send({ id: results });
 	}
 	catch (err) {
-		res.code(400).send({ 'Constraint violation': 'The Session_ID does not exist in Session' })
+		res.code(403).send({ 'Constraint violation': 'The Session_ID does not exist in Session' })
 	}
 });
 
@@ -142,7 +142,7 @@ fastify.patch(URL_Prefix + '/usage/views/:id', async (req, res) => {
 		res.code(200).send({ id: req.body['Session_ID'] });  // Returning from body in case Session_ID was changed (async won't get the updated ID)
 	}
 	catch (err) {
-		res.code(400).send({ 'Constraint violation': 'The Session_ID does not exist in Session' })
+		res.code(403).send({ 'Constraint violation': 'The Session_ID does not exist in Session' })
 	}
 });
 
