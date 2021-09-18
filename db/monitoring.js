@@ -18,12 +18,21 @@ function getRegisteredUser(id) {
 
 // UPDATE functions
 function updateRegisteredUser(id, user) {
-	return knex('Users_Registered').where('User_ID', id).update(user);
+	// If User_ID not part of body, fine. If it is, it needs to be the same:
+	if (!user['User_ID'] || id == user['User_ID'])
+		return knex('Users_Registered').where('User_ID', id).update(user);
 }
 
 // DELETE functions
 function deleteRegisteredUser(id) {
-	return knex('Users_Registered').where('User_ID', id).del();
+	results = knex('Users_Online').where('User_ID', id).del() // Delete row in Users_Online if exists first.
+	.returning()
+	.then(
+		function() {
+			return knex('Users_Registered').where('User_ID', id).del(); // Now delete the actual Users_Registered row.
+		}
+	);
+	return results;
 }
 
 // OnlineUsers CRUD
@@ -51,7 +60,15 @@ function getOnlineUser(id) {
 
 // UPDATE functions
 function updateOnlineUser(id, user) {
-	return knex('Users_Online').where('User_ID', id).update(user);
+	results = knex('Users_Registered').where('User_ID', user['User_ID']) // Check that user id is valid
+	.returning()
+	.then(
+		function (result) {
+			if(result.length != 0)
+				return knex('Users_Online').where('User_ID', id).update(user);
+		}
+	);
+	return results;
 }
 
 // DELETE functions
@@ -84,7 +101,15 @@ function getPagesViewed(id) {
 
 // UPDATE functions
 function updatePagesViewed(id, page) {
-	return knex('Pages_Viewed').where('Page_ID', id).update(page);
+	results = knex('Session').where('Session_ID', page['Session_ID']) // Check that page id is valid
+	.returning()
+	.then(
+		function (result) {
+			if(result.length != 0)
+				return knex('Pages_Viewed').where('Page_ID', id).update(page);
+		}
+	);
+	return results;
 }
 
 // DELETE functions
@@ -108,12 +133,21 @@ function getSession(id) {
 
 // UPDATE functions
 function updateSession(id, session) {
-	return knex('Session').where('Session_ID', id).update(session);
+	// If Session_ID not part of body, fine. If it is, it needs to be the same:
+	if (!session['Session_ID'] || id == session['Session_ID'])
+		return knex('Session').where('Session_ID', id).update(session);
 }
 
 // DELETE functions
 function deleteSession(id) {
-	return knex('Session').where('Session_ID', id).del();
+	results = knex('Pages_Viewed').where('Session_ID', id).del() // Delete dependent Pages_Viewed rows first.
+	.returning()
+	.then(
+		function () {
+			return knex('Session').where('Session_ID', id).del();
+		}
+	);
+	return results;
 }
 
 module.exports = {
