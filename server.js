@@ -5,7 +5,6 @@ const URL_Prefix = '/api/monitoring'
 const server_port = process.env.PORT || 8000;
 
 fastify.get(URL_Prefix + '/ping', async(req, res) => {
-	const results = await db.getAllRegisteredUsers();
 	res.code(200).send({ "Status": "Running" });
 });
 
