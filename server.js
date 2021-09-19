@@ -161,6 +161,6 @@ fastify.listen(server_port, function(err){ // Add '0.0.0.0' param for deployment
 		process.exit(1);
 	}
 	else{
-		console.log('[ Server is running on port 8000 ]');
+		console.log(`[ Server is running on port ${server_port} ]`);
 	}
 });
