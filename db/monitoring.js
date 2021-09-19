@@ -101,7 +101,7 @@ function getPagesViewed(id) {
 
 // UPDATE functions
 function updatePagesViewed(id, page) {
-	results = knex('Session').where('Session_ID', page['Session_ID']) // Check that page id is valid
+	results = knex('Session').where('Session_ID', page['Session_ID']) // Check that session id is valid
 	.returning()
 	.then(
 		function (result) {
