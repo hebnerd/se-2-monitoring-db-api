@@ -4,7 +4,7 @@ const knex = require('./knex');
 // CREATE functions
 
 function createRegisteredUser(user) {
-	return knex('Users_Registered').insert(user);
+	return knex('Users_Registered').insert(user).returning('User_ID');
 }
 
 // READ functions
@@ -20,7 +20,7 @@ function getRegisteredUser(id) {
 function updateRegisteredUser(id, user) {
 	// If User_ID not part of body, fine. If it is, it needs to be the same:
 	if (!user['User_ID'] || id == user['User_ID'])
-		return knex('Users_Registered').where('User_ID', id).update(user);
+		return knex('Users_Registered').where('User_ID', id).update(user).returning('User_ID');
 }
 
 // DELETE functions
@@ -43,7 +43,7 @@ function createOnlineUser(user) {
 	.then(
 		function (result) {
 			if(result.length != 0)
-				return knex('Users_Online').insert(user);
+				return knex('Users_Online').insert(user).returning('User_ID');
 		}
 	);
 	return results;
@@ -65,7 +65,7 @@ function updateOnlineUser(id, user) {
 	.then(
 		function (result) {
 			if(result.length != 0)
-				return knex('Users_Online').where('User_ID', id).update(user);
+				return knex('Users_Online').where('User_ID', id).update(user).returning('User_ID');
 		}
 	);
 	return results;
@@ -76,6 +76,40 @@ function deleteOnlineUser(id) {
 	return knex('Users_Online').where('User_ID', id).del();
 }
 
+// Session CRUD
+// CREATE functions
+function createSession(session) {
+	return knex('Session').insert(session).returning('Session_ID');
+}
+
+// READ functions
+function getAllSessions() {
+	return knex("Session").select('*');
+}
+
+function getSession(id) {
+	return knex('Session').where('Session_ID', id);
+}
+
+// UPDATE functions
+function updateSession(id, session) {
+	// If Session_ID not part of body, fine. If it is, it needs to be the same:
+	if (!session['Session_ID'] || id == session['Session_ID'])
+		return knex('Session').where('Session_ID', id).update(session).returning('Session_ID');
+}
+
+// DELETE functions
+function deleteSession(id) {
+	results = knex('Pages_Viewed').where('Session_ID', id).del() // Delete dependent Pages_Viewed rows first.
+	.returning()
+	.then(
+		function () {
+			return knex('Session').where('Session_ID', id).del();
+		}
+	);
+	return results;
+}
+
 // PagesViewed CRUD
 // CREATE functions
 function createPagesViewed(page) {
@@ -84,7 +118,7 @@ function createPagesViewed(page) {
 	.then(
 		function (result) {
 			if(result.length != 0)
-				return knex('Pages_Viewed').insert(page);
+				return knex('Pages_Viewed').insert(page).returning('Page_ID');
 		}
 	);
 	return results;
@@ -106,7 +140,7 @@ function updatePagesViewed(id, page) {
 	.then(
 		function (result) {
 			if(result.length != 0)
-				return knex('Pages_Viewed').where('Page_ID', id).update(page);
+				return knex('Pages_Viewed').where('Page_ID', id).update(page).returning('Page_ID');
 		}
 	);
 	return results;
@@ -115,39 +149,6 @@ function updatePagesViewed(id, page) {
 // DELETE functions
 function deletePagesViewed(id) {
 	return knex('Pages_Viewed').where('Page_ID', id).del();
-}
-// Session CRUD
-// CREATE functions
-function createSession(session) {
-	return knex('Session').insert(session);
-}
-
-// READ functions
-function getAllSessions() {
-	return knex("Session").select('*');
-}
-
-function getSession(id) {
-	return knex('Session').where('Session_ID', id);
-}
-
-// UPDATE functions
-function updateSession(id, session) {
-	// If Session_ID not part of body, fine. If it is, it needs to be the same:
-	if (!session['Session_ID'] || id == session['Session_ID'])
-		return knex('Session').where('Session_ID', id).update(session);
-}
-
-// DELETE functions
-function deleteSession(id) {
-	results = knex('Pages_Viewed').where('Session_ID', id).del() // Delete dependent Pages_Viewed rows first.
-	.returning()
-	.then(
-		function () {
-			return knex('Session').where('Session_ID', id).del();
-		}
-	);
-	return results;
 }
 
 module.exports = {

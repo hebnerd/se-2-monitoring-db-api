@@ -64,11 +64,10 @@ fastify.post(URL_Prefix + '/users/online', async (req, res) => {
 });
 
 fastify.patch(URL_Prefix + '/users/online/:id', async (req, res) => {
-	let userOnline = JSON.parse(req.body);
-	const results = await db.updateOnlineUser(req.params.id, userOnline);
+	const results = await db.updateOnlineUser(req.params.id, JSON.parse(req.body));
 	try{
 		results.length == 1; // If length property exists, no error (User_ID was in Users_Registered)
-		res.code(200).send({ User_ID: userOnline['User_ID'] });  // Returning from body in case User_ID was changed (async won't get the updated ID)
+		res.code(200).send({ User_ID: results });
 	}
 	catch(err) {
 		res.code(403).send({ 'Constraint violation': 'The User_ID does not exist in Users_Registered' })
@@ -137,11 +136,10 @@ fastify.post(URL_Prefix + '/usage/views', async (req, res) => {
 });
 
 fastify.patch(URL_Prefix + '/usage/views/:id', async (req, res) => {
-	let pageViewed = JSON.parse(req.body);
-	const results = await db.updatePagesViewed(req.params.id, pageViewed);
+	const results = await db.updatePagesViewed(req.params.id, JSON.parse(req.body));
 	try {
 		results.length == 1; // If length property exists, no error (Session_ID was in Session)
-		res.code(200).send({ Page_ID: pageViewed['Page_ID'] });  // Returning from body in case Page_ID was changed (async won't get the updated ID)
+		res.code(200).send({ Page_ID: results });
 	}
 	catch (err) {
 		res.code(403).send({ 'Constraint violation': 'The Session_ID does not exist in Session' })
