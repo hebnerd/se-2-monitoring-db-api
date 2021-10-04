@@ -2,8 +2,8 @@ const knex = require('./knex');
 
 // PetSales CRUD
 // CREATE functions
-function createPetSales(user) {
-	return knex('Pet_Sales').insert(user).returning('Pet_Sale_ID');
+function createPetSales(pet) {
+	return knex('Pet_Sales').insert(pet).returning('Pet_Sale_ID');
 }
 
 // READ functions
@@ -16,10 +16,10 @@ function getPetSales(id) {
 }
 
 // UPDATE functions
-function updatePetSales(id, user) {
+function updatePetSales(id, pet) {
 	// If Pet_Sale_ID not part of body, fine. If it is, it needs to be the same:
-	if (!user['Pet_Sale_ID'] || id == user['Pet_Sale_ID'])
-		return knex('Pet_Sales').where('Pet_Sale_ID', id).update(user).returning('Pet_Sale_ID');
+	if (!pet['Pet_Sale_ID'] || id == ['Pet_Sale_ID'])
+		return knex('Pet_Sales').where('Pet_Sale_ID', id).update(pet).returning('Pet_Sale_ID');
 }
 
 // DELETE functions
@@ -29,8 +29,8 @@ function deletePetSales(id) {
 
 // ProductSales CRUD
 // CREATE function
-function createProductSales(user) {
-	return knex('Product_Sales').insert(user).returning('Product_Sale_ID');
+function createProductSales(product) {
+	return knex('Product_Sales').insert(product).returning('Product_Sale_ID');
 }
 
 // READ functions
@@ -43,10 +43,10 @@ function getProductSales(id) {
 }
 
 // UPDATE functions
-function updateProductSales(id, user) {
+function updateProductSales(id, product) {
 	// If Pet_Sale_ID not part of body, fine. If it is, it needs to be the same:
-	if (!user['Product_Sale_ID'] || id == user['Product_Sale_ID'])
-		return knex('Product_Sales').where('Product_Sale_ID', id).update(user).returning('Product_Sale_ID');
+	if (!product['Product_Sale_ID'] || id == product['Product_Sale_ID'])
+		return knex('Product_Sales').where('Product_Sale_ID', id).update(product).returning('Product_Sale_ID');
 }
 
 // DELETE functions
