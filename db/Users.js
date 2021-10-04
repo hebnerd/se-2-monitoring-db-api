@@ -23,8 +23,6 @@ function updateRegisteredUser(id, user) {
 		return knex('Users_Registered').where('User_ID', id).update(user).returning('User_ID');
 }
 
-/* 
-Incase still needed even though Users_Online is no longer dependent on Users_Registered
 // DELETE functions
 function deleteRegisteredUser(id) {
 	results = knex('Users_Online').where('User_ID', id).del() // Delete row in Users_Online if exists first.
@@ -36,14 +34,7 @@ function deleteRegisteredUser(id) {
 		);
 	return results;
 }
-*/
 
-// DELETE functions
-function deleteOnlineUser(id) {
-	return knex('Users_Registered').where('User_ID', id).del();
-}
-
-/*
 // OnlineUsers CRUD
 // CREATE functions
 function createOnlineUser(user) {
@@ -56,11 +47,6 @@ function createOnlineUser(user) {
 			}
 		);
 	return results;
-}
-*/
-// CREATE functions
-function createOnlineUser(user) {
-	return knex('Users_Online').insert(user).returning('User_ID');
 }
 
 // READ functions
