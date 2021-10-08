@@ -1,4 +1,5 @@
 const knex = require('./knex');
+const TimeRangeHelper = require('./TimeRangeHelper');
 
 // PetSales CRUD
 // CREATE functions
@@ -9,6 +10,13 @@ function createPetSales(pet) {
 // READ functions
 function getAllPetSales() {
 	return knex('Pet_Sales').select('*');
+}
+
+function getPetSalesInRange(n) {
+	let timeStamps = TimeRangeHelper.createUnixDateRange(n);
+	return knex('Pet_Sales')
+			.where('Date_Sold_Timestamp', '<', timeStamps[0])
+			.andWhere('Date_Sold_Timestamp', '>=', timeStamps[1]);
 }
 
 function getPetSales(id) {
@@ -38,6 +46,13 @@ function getAllProductSales() {
 	return knex('Product_Sales').select('*');
 }
 
+function getProductSalesInRange(n) {
+	let timeStamps = TimeRangeHelper.createUnixDateRange(n);
+	return knex('Product_Sales')
+			.where('Date_Sold_Timestamp', '<', timeStamps[0])
+			.andWhere('Date_Sold_Timestamp', '>=', timeStamps[1])
+}
+
 function getProductSales(id) {
 	return knex('Product_Sales').where('Product_Sale_ID', id);
 }
@@ -57,12 +72,14 @@ function deleteProductSales(id) {
 module.exports = {
 	createPetSales,
 	getAllPetSales,
+	getPetSalesInRange,
 	getPetSales,
 	updatePetSales,
 	deletePetSales,
 	createProductSales,
 	getAllProductSales,
+	getProductSalesInRange,
 	getProductSales,
 	updateProductSales,
-	deleteProductSales
+	deleteProductSales,
 }

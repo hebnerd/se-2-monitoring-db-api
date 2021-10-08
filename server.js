@@ -11,9 +11,28 @@ fastify.get(URL_Prefix + '/ping', async(req, res) => {
 });
 
 //#region Users_Registered methods
+//#region Users_Registered methods
 fastify.get(URL_Prefix + '/users/registered', async(req, res) => {
-	const results = await users.getAllRegisteredUsers();
-	res.code(200).send({ results });
+	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
+		try {
+			let timeRange = parseInt(req.query.timerange);
+			if (timeRange == 0) { // Get all
+				const results = await users.getAllRegisteredUsers();
+				res.code(200).send({ results });
+			}
+			else { // Get the results within for current day and (timeRange - 1) days.
+				const results = await users.getRegisteredUsersInRange(timeRange);
+				res.code(200).send({ results });
+			}
+		}
+		catch {
+			res.code(400).send( { 'Invalid query': 'Your timerange must be an int.' } )
+		}
+	}
+	else {
+		const results = await users.getAllRegisteredUsers();
+		res.code(200).send({ results });
+	}
 });
 
 fastify.get(URL_Prefix + '/users/registered/:id', async(req, res) => {
@@ -44,9 +63,27 @@ fastify.delete(URL_Prefix + '/users/registered/:id', async (req, res) => {
 //#endregion
 
 //#region Users_Online methods
-fastify.get(URL_Prefix + '/users/online', async (req, res) => {
-	const results = await users.getAllOnlineUsers();
-	res.code(200).send({ results });
+fastify.get(URL_Prefix + '/users/online', async(req, res) => {
+	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
+		try {
+			let timeRange = parseInt(req.query.timerange);
+			if (timeRange == 0) { // Get all
+				const results = await users.getAllOnlineUsers();
+				res.code(200).send({ results });
+			}
+			else { // Get the results within for current day and (timeRange - 1) days.
+				const results = await users.getOnlineUsersInRange(timeRange);
+				res.code(200).send({ results });
+			}
+		}
+		catch {
+			res.code(400).send( { 'Invalid query': 'Your timerange must be an int.' } )
+		}
+	}
+	else {
+		const results = await users.getAllOnlineUsers();
+		res.code(200).send({ results });
+	}
 });
 
 fastify.get(URL_Prefix + '/users/online/:id', async (req, res) => {
@@ -83,9 +120,27 @@ fastify.delete(URL_Prefix + '/users/online/:id', async (req, res) => {
 //#endregion
 
 //#region Session methods
-fastify.get(URL_Prefix + '/usage/visits', async (req, res) => {
-	const results = await usage.getAllSessions();
-	res.code(200).send({ results });
+fastify.get(URL_Prefix + '/usage/visits', async(req, res) => {
+	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
+		try {
+			let timeRange = parseInt(req.query.timerange);
+			if (timeRange == 0) { // Get all
+				const results = await usage.getAllSessions();
+				res.code(200).send({ results });
+			}
+			else { // Get the results within for current day and (timeRange - 1) days.
+				const results = await usage.getSessionsInRange(timeRange);
+				res.code(200).send({ results });
+			}
+		}
+		catch {
+			res.code(400).send( { 'Invalid query': 'Your timerange must be an int.' } )
+		}
+	}
+	else {
+		const results = await usage.getAllSessions();
+		res.code(200).send({ results });
+	}
 });
 
 fastify.get(URL_Prefix + '/usage/visits/:id', async (req, res) => {
@@ -116,9 +171,27 @@ fastify.delete(URL_Prefix + '/usage/visits/:id', async (req, res) => {
 //#endregion
 
 //#region Pages_Viewed
-fastify.get(URL_Prefix + '/usage/views', async (req, res) => {
-	const results = await usage.getAllPagesViewed();
-	res.code(200).send({ results });
+fastify.get(URL_Prefix + '/usage/views', async(req, res) => {
+	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
+		try {
+			let timeRange = parseInt(req.query.timerange);
+			if (timeRange == 0) { // Get all
+				const results = await usage.getAllPagesViewed();
+				res.code(200).send({ results });
+			}
+			else { // Get the results within for current day and (timeRange - 1) days.
+				const results = await usage.getPagesViewedInRange(timeRange);
+				res.code(200).send({ results });
+			}
+		}
+		catch {
+			res.code(400).send( { 'Invalid query': 'Your timerange must be an int.' } )
+		}
+	}
+	else {
+		const results = await usage.getAllPagesViewed();
+		res.code(200).send({ results });
+	}
 });
 
 fastify.get(URL_Prefix + '/usage/views/:id', async (req, res) => {
@@ -155,9 +228,27 @@ fastify.delete(URL_Prefix + '/usage/views/:id', async (req, res) => {
 //#endregion
 
 //#region Pet_Sales
-fastify.get(URL_Prefix + '/sales/pets', async (req, res) => {
-	const results = await sales.getAllPetSales();
-	res.code(200).send({ results });
+fastify.get(URL_Prefix + '/sales/pets', async(req, res) => {
+	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
+		try {
+			let timeRange = parseInt(req.query.timerange);
+			if (timeRange == 0) { // Get all
+				const results = await sales.getAllPetSales();
+				res.code(200).send({ results });
+			}
+			else { // Get the results within for current day and (timeRange - 1) days.
+				const results = await sales.getPetSalesInRange(timeRange);
+				res.code(200).send({ results });
+			}
+		}
+		catch {
+			res.code(400).send( { 'Invalid query': 'Your timerange must be an int.' } )
+		}
+	}
+	else {
+		const results = await sales.getAllPetSales();
+		res.code(200).send({ results });
+	}
 });
 
 fastify.get(URL_Prefix + '/sales/pets/:id', async (req, res) => {
@@ -188,11 +279,28 @@ fastify.delete(URL_Prefix + '/sales/pets/:id', async (req, res) => {
 //#endregion
 
 //#region Product_Sales
-fastify.get(URL_Prefix + '/sales/products', async (req, res) => {
-	const results = await sales.getAllProductSales();
-	res.code(200).send({ results });
+fastify.get(URL_Prefix + '/sales/products', async(req, res) => {
+	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
+		try {
+			let timeRange = parseInt(req.query.timerange);
+			if (timeRange == 0) { // Get all
+				const results = await sales.getAllProductSales();
+				res.code(200).send({ results });
+			}
+			else { // Get the results within for current day and (timeRange - 1) days.
+				const results = await sales.getProductSalesInRange(timeRange);
+				res.code(200).send({ results });
+			}
+		}
+		catch {
+			res.code(400).send( { 'Invalid query': 'Your timerange must be an int.' } )
+		}
+	}
+	else {
+		const results = await sales.getAllProductSales();
+		res.code(200).send({ results });
+	}
 });
-
 fastify.get(URL_Prefix + '/sales/products/:id', async (req, res) => {
 	const results = await sales.getProductSales(req.params.id);
 	res.code(200).send({ results });
