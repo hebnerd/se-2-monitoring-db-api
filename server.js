@@ -200,14 +200,14 @@ fastify.get(URL_Prefix + '/sales/products/:id', async (req, res) => {
 
 fastify.post(URL_Prefix + '/sales/products', async (req, res) => {
 	const results = await sales.createProductSales(JSON.parse(req.body));
-	res.code(201).send({ Product_ID: results });
+	res.code(201).send({ Product_Sale_ID: results });
 });
 
 fastify.patch(URL_Prefix + '/sales/products/:id', async (req, res) => {
 	const results = await sales.updateProductSales(req.params.id, JSON.parse(req.body));
 	try {
-		results.length == 1; // If length property exists, no error (Product_ID was in Product_Sales)
-		res.code(200).send({ Product_ID: results });
+		results.length == 1; // If length property exists, no error (Product_Sale_ID was in Product_Sales)
+		res.code(200).send({ Product_Sale_ID: results });
 	}
 	catch (err) {
 		res.code(403).send({ 'Forbidden': 'The User_ID cannot be changed.' })
