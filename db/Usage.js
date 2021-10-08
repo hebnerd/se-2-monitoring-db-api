@@ -1,4 +1,5 @@
 const knex = require('./knex');
+const TimeRangeHelper = require('./TimeRangeHelper');
 
 // Session CRUD
 // CREATE functions
@@ -9,6 +10,13 @@ function createSession(session) {
 // READ functions
 function getAllSessions() {
 	return knex("Session").select('*');
+}
+
+function getSessionsInRange(n) {
+	let timeStamps = TimeRangeHelper.createUnixDateRange(n);
+	return knex('Session')
+			.where('Visited_Timestamp', '<', timeStamps[0])
+			.andWhere('Visited_Timestamp', '>=', timeStamps[1]);
 }
 
 function getSession(id) {
@@ -53,6 +61,13 @@ function getAllPagesViewed() {
 	return knex('Pages_Viewed').select('*');
 }
 
+function getPagesViewedInRange(n) {
+	let timeStamps = TimeRangeHelper.createUnixDateRange(n);
+	return knex('Pages_Viewed')
+			.where('Viewed_Timestamp', '<', timeStamps[0])
+			.andWhere('Viewed_Timestamp', '>=', timeStamps[1]);
+}
+
 function getPagesViewed(id) {
 	return knex('Pages_Viewed').where('Page_ID', id);
 }
@@ -76,14 +91,16 @@ function deletePagesViewed(id) {
 }
 
 module.exports = {
+	createSession,
+	getAllSessions,
+	getSessionsInRange,
+	getSession,
+	updateSession,
+	deleteSession,
 	createPagesViewed,
 	getAllPagesViewed,
+	getPagesViewedInRange,
 	getPagesViewed,
 	updatePagesViewed,
 	deletePagesViewed,
-	createSession,
-	getAllSessions,
-	getSession,
-	updateSession,
-	deleteSession
 }

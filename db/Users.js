@@ -1,4 +1,5 @@
 const knex = require('./knex');
+const TimeRangeHelper = require('./TimeRangeHelper');
 
 // RegisteredUsers CRUD
 // CREATE functions
@@ -10,6 +11,13 @@ function createRegisteredUser(user) {
 // READ functions
 function getAllRegisteredUsers() {
 	return knex('Users_Registered').select('*');
+}
+
+function getRegisteredUsersInRange(n) {
+	let timeStamps = TimeRangeHelper.createUnixDateRange(n);
+	return knex('Users_Registered')
+			.where('Reg_Timestamp', '<', timeStamps[0])
+			.andWhere('Reg_Timestamp', '>=', timeStamps[1]);
 }
 
 function getRegisteredUser(id) {
@@ -54,6 +62,13 @@ function getAllOnlineUsers() {
 	return knex('Users_Online').select('*');
 }
 
+function getOnlineUsersInRange(n) {
+	let timeStamps = TimeRangeHelper.createUnixDateRange(n);
+	return knex('Users_Online')
+			.where('Login_Timestamp', '<', timeStamps[0])
+			.andWhere('Login_Timestamp', '>=', timeStamps[1]);
+}
+
 function getOnlineUser(id) {
 	return knex('Users_Online').where('User_ID', id);
 }
@@ -78,13 +93,15 @@ function deleteOnlineUser(id) {
 
 module.exports = {
 	createRegisteredUser,
-		getAllRegisteredUsers,
-		getRegisteredUser,
-		updateRegisteredUser,
-		deleteRegisteredUser,
-		createOnlineUser,
-		getAllOnlineUsers,
-		getOnlineUser,
-		updateOnlineUser,
-		deleteOnlineUser
+	getAllRegisteredUsers,
+	getRegisteredUsersInRange,
+	getRegisteredUser,
+	updateRegisteredUser,
+	deleteRegisteredUser,
+	createOnlineUser,
+	getAllOnlineUsers,
+	getOnlineUsersInRange,
+	getOnlineUser,
+	updateOnlineUser,
+	deleteOnlineUser,
 }
