@@ -154,6 +154,72 @@ fastify.delete(URL_Prefix + '/usage/views/:id', async (req, res) => {
 });
 //#endregion
 
+//#region Pet_Sales
+fastify.get(URL_Prefix + '/sales/pets', async (req, res) => {
+	const results = await sales.getAllPetSales();
+	res.code(200).send({ results });
+});
+
+fastify.get(URL_Prefix + '/sales/pets/:id', async (req, res) => {
+	const results = await sales.getPetSales(req.params.id);
+	res.code(200).send({ results });
+});
+
+fastify.post(URL_Prefix + '/sales/pets', async (req, res) => {
+	const results = await sales.createPetSales(JSON.parse(req.body));
+	res.code(201).send({ Pet_Sale_ID: results });
+});
+
+fastify.patch(URL_Prefix + '/sales/pets/:id', async (req, res) => {
+	const results = await sales.updatePetSales(req.params.id, JSON.parse(req.body));
+	try {
+		results.length == 1; // If length property exists, no error (Pet_Sale_ID was in Pet_Sales)
+		res.code(200).send({ Pet_Sale_ID: results });
+	}
+	catch (err) {
+		res.code(403).send({ 'Forbidden': 'The User_ID cannot be changed.' })
+	}
+});
+
+fastify.delete(URL_Prefix + '/sales/pets/:id', async (req, res) => {
+	const results = await sales.deletePetSales(req.params.id);
+	res.code(200).send({ success: true });
+});
+//#endregion
+
+//#region Product_Sales
+fastify.get(URL_Prefix + '/sales/products', async (req, res) => {
+	const results = await sales.getAllProductSales();
+	res.code(200).send({ results });
+});
+
+fastify.get(URL_Prefix + '/sales/products/:id', async (req, res) => {
+	const results = await sales.getProductSales(req.params.id);
+	res.code(200).send({ results });
+});
+
+fastify.post(URL_Prefix + '/sales/products', async (req, res) => {
+	const results = await sales.createProductSales(JSON.parse(req.body));
+	res.code(201).send({ Product_Sale_ID: results });
+});
+
+fastify.patch(URL_Prefix + '/sales/products/:id', async (req, res) => {
+	const results = await sales.updateProductSales(req.params.id, JSON.parse(req.body));
+	try {
+		results.length == 1; // If length property exists, no error (Product_Sale_ID was in Product_Sales)
+		res.code(200).send({ Product_Sale_ID: results });
+	}
+	catch (err) {
+		res.code(403).send({ 'Forbidden': 'The User_ID cannot be changed.' })
+	}
+});
+
+fastify.delete(URL_Prefix + '/sales/products/:id', async (req, res) => {
+	const results = await sales.deleteProductSales(req.params.id);
+	res.code(200).send({ success: true });
+});
+//#endregion
+
 fastify.listen(server_port, function(err){ // Add '0.0.0.0' param for deployment.
 	if(err){
 		console.log(err);
