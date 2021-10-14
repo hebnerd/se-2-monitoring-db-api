@@ -6,11 +6,18 @@ const fastify = require('fastify')();
 const URL_Prefix = '/api/monitoring'
 const server_port = process.env.PORT || 8000;
 
+function parseData(data) {
+    if (!data) return {};
+    if (typeof data === 'object') return data;
+    if (typeof data === 'string') return JSON.parse(data);
+
+    return {};
+}
+
 fastify.get(URL_Prefix + '/ping', async(req, res) => {
 	res.code(200).send({ "Status": "Running" });
 });
 
-//#region Users_Registered methods
 //#region Users_Registered methods
 fastify.get(URL_Prefix + '/users/registered', async(req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
@@ -41,12 +48,14 @@ fastify.get(URL_Prefix + '/users/registered/:id', async(req, res) => {
 });
 
 fastify.post(URL_Prefix + '/users/registered', async (req, res) => {
-	const results = await users.createRegisteredUser(JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await users.createRegisteredUser(data);
 	res.code(201).send({ User_ID: results });
 });
 
 fastify.patch(URL_Prefix + '/users/registered/:id', async (req, res) => {
-	const results = await users.updateRegisteredUser(req.params.id, JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await users.updateRegisteredUser(req.params.id, data);
 	try{
 		results.length == 1; // If length property exists, no error (User_ID was in Users_Registered)
 		res.code(200).send({ User_ID: results });
@@ -92,7 +101,8 @@ fastify.get(URL_Prefix + '/users/online/:id', async (req, res) => {
 });
 
 fastify.post(URL_Prefix + '/users/online', async (req, res) => {
-	const results = await users.createOnlineUser(JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await users.createOnlineUser(data);
 	try{
 		results.length == 1; // If length property exists, no error (User_ID was in Users_Registered)
 		res.code(201).send({ User_ID: results });
@@ -103,7 +113,8 @@ fastify.post(URL_Prefix + '/users/online', async (req, res) => {
 });
 
 fastify.patch(URL_Prefix + '/users/online/:id', async (req, res) => {
-	const results = await users.updateOnlineUser(req.params.id, JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await users.updateOnlineUser(req.params.id, data);
 	try{
 		results.length == 1; // If length property exists, no error (User_ID was in Users_Registered)
 		res.code(200).send({ User_ID: results });
@@ -149,12 +160,14 @@ fastify.get(URL_Prefix + '/usage/visits/:id', async (req, res) => {
 });
 
 fastify.post(URL_Prefix + '/usage/visits', async (req, res) => {
-	const results = await usage.createSession(JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await usage.createSession(data);
 	res.code(201).send({ Session_ID: results });
 });
 
 fastify.patch(URL_Prefix + '/usage/visits/:id', async (req, res) => {
-	const results = await usage.updateSession(req.params.id, JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await usage.updateSession(req.params.id, data);
 	try{
 		results.length == 1; // If length property exists, no error (User_ID was in Users_Registered)
 		res.code(200).send({ Session_ID: results });
@@ -200,7 +213,8 @@ fastify.get(URL_Prefix + '/usage/views/:id', async (req, res) => {
 });
 
 fastify.post(URL_Prefix + '/usage/views', async (req, res) => {
-	const results = await usage.createPagesViewed(JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await usage.createPagesViewed(data);
 	try {
 		results.length == 1; // If length property exists, no error (Session_ID was in Session)
 		res.code(201).send({ Page_ID: results });
@@ -211,7 +225,8 @@ fastify.post(URL_Prefix + '/usage/views', async (req, res) => {
 });
 
 fastify.patch(URL_Prefix + '/usage/views/:id', async (req, res) => {
-	const results = await usage.updatePagesViewed(req.params.id, JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await usage.updatePagesViewed(req.params.id, data);
 	try {
 		results.length == 1; // If length property exists, no error (Session_ID was in Session)
 		res.code(200).send({ Page_ID: results });
@@ -257,12 +272,14 @@ fastify.get(URL_Prefix + '/sales/pets/:id', async (req, res) => {
 });
 
 fastify.post(URL_Prefix + '/sales/pets', async (req, res) => {
-	const results = await sales.createPetSales(JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await sales.createPetSales(data);
 	res.code(201).send({ Pet_Sale_ID: results });
 });
 
 fastify.patch(URL_Prefix + '/sales/pets/:id', async (req, res) => {
-	const results = await sales.updatePetSales(req.params.id, JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await sales.updatePetSales(req.params.id, data);
 	try {
 		results.length == 1; // If length property exists, no error (Pet_Sale_ID was in Pet_Sales)
 		res.code(200).send({ Pet_Sale_ID: results });
@@ -307,12 +324,14 @@ fastify.get(URL_Prefix + '/sales/products/:id', async (req, res) => {
 });
 
 fastify.post(URL_Prefix + '/sales/products', async (req, res) => {
-	const results = await sales.createProductSales(JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await sales.createProductSales(data);
 	res.code(201).send({ Product_Sale_ID: results });
 });
 
 fastify.patch(URL_Prefix + '/sales/products/:id', async (req, res) => {
-	const results = await sales.updateProductSales(req.params.id, JSON.parse(req.body));
+	let data = parseData(req.body);
+	const results = await sales.updateProductSales(req.params.id, data);
 	try {
 		results.length == 1; // If length property exists, no error (Product_Sale_ID was in Product_Sales)
 		res.code(200).send({ Product_Sale_ID: results });
