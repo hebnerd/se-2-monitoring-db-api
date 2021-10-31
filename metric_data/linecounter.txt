@@ -1,0 +1,29 @@
+monitoring-db-api\server.js file lines count:
+   code is 312 lines.
+   comment is 39 lines.
+   blank is 34 lines.
+
+monitoring-db-api\db\knex.js file lines count:
+   code is 8 lines.
+   comment is 0 line.
+   blank is 2 lines.
+
+monitoring-db-api\db\Sales.js file lines count:
+   code is 60 lines.
+   comment is 12 lines.
+   blank is 13 lines.
+
+monitoring-db-api\db\TimeRangeHelper.js file lines count:
+   code is 14 lines.
+   comment is 8 lines.
+   blank is 5 lines.
+
+monitoring-db-api\db\Usage.js file lines count:
+   code is 82 lines.
+   comment is 14 lines.
+   blank is 13 lines.
+
+monitoring-db-api\db\Users.js file lines count:
+   code is 82 lines.
+   comment is 15 lines.
+   blank is 14 lines.
