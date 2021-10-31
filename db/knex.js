@@ -1,10 +1,8 @@
 const knex = require('knex');
 
 const connectedKnex = knex({
-	client: 'sqlite3',
-	connection: {
-		filename: 'db/Monitoring.sqlite3'
-	}
+	client: 'pg',
+	connection: 'postgres://postgres:Ducksdatabase5!@localhost'
 });
 
 module.exports = connectedKnex;
