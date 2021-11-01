@@ -1,0 +1,331 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\Users\\rocky\\source\\repos\\monitoring-db-api",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2021-10-31 15:39:35",
+            "filesum": 13,
+            "codesum": 2064,
+            "commentsum": 95,
+            "blanksum": 114,
+            "statistics": {
+                ".json": {
+                    "code": 1414,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".js": {
+                    "code": 558,
+                    "comment": 88,
+                    "blank": 81
+                },
+                "": {
+                    "code": 92,
+                    "comment": 7,
+                    "blank": 32
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 32,
+                    "code": 92,
+                    "comment": 7,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": ".vs\\monitoring-db-api\\v16\\.suo",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".vs\\slnx.sqlite",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": ".vs\\VSWorkspaceState.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "db\\knex.js"
+                },
+                {
+                    "filename": "db\\Monitoring.sqlite3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 13,
+                    "code": 60,
+                    "comment": 12,
+                    "filename": "db\\Sales.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 14,
+                    "comment": 8,
+                    "filename": "db\\TimeRangeHelper.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 82,
+                    "comment": 14,
+                    "filename": "db\\Usage.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 82,
+                    "comment": 15,
+                    "filename": "db\\Users.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1385,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 34,
+                    "code": 312,
+                    "comment": 39,
+                    "filename": "server.js"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2021-10-31 15:48:45",
+            "filesum": 13,
+            "codesum": 2064,
+            "commentsum": 95,
+            "blanksum": 114,
+            "statistics": {
+                ".js": {
+                    "code": 558,
+                    "comment": 88,
+                    "blank": 81
+                },
+                ".json": {
+                    "code": 1414,
+                    "comment": 0,
+                    "blank": 1
+                },
+                "": {
+                    "code": 92,
+                    "comment": 7,
+                    "blank": 32
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 32,
+                    "code": 92,
+                    "comment": 7,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": ".vs\\monitoring-db-api\\v16\\.suo",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".vs\\slnx.sqlite",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": ".vs\\VSWorkspaceState.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "db\\knex.js"
+                },
+                {
+                    "filename": "db\\Monitoring.sqlite3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 13,
+                    "code": 60,
+                    "comment": 12,
+                    "filename": "db\\Sales.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 14,
+                    "comment": 8,
+                    "filename": "db\\TimeRangeHelper.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 82,
+                    "comment": 14,
+                    "filename": "db\\Usage.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 82,
+                    "comment": 15,
+                    "filename": "db\\Users.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1385,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 34,
+                    "code": 312,
+                    "comment": 39,
+                    "filename": "server.js"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2021-10-31 15:51:16",
+            "filesum": 13,
+            "codesum": 2064,
+            "commentsum": 95,
+            "blanksum": 114,
+            "statistics": {
+                ".json": {
+                    "code": 1414,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".js": {
+                    "code": 558,
+                    "comment": 88,
+                    "blank": 81
+                },
+                "": {
+                    "code": 92,
+                    "comment": 7,
+                    "blank": 32
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 32,
+                    "code": 92,
+                    "comment": 7,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": ".vs\\monitoring-db-api\\v16\\.suo",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".vs\\slnx.sqlite",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": ".vs\\VSWorkspaceState.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "db\\knex.js"
+                },
+                {
+                    "filename": "db\\Monitoring.sqlite3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 13,
+                    "code": 60,
+                    "comment": 12,
+                    "filename": "db\\Sales.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 14,
+                    "comment": 8,
+                    "filename": "db\\TimeRangeHelper.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 82,
+                    "comment": 14,
+                    "filename": "db\\Usage.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 82,
+                    "comment": 15,
+                    "filename": "db\\Users.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1385,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 34,
+                    "code": 312,
+                    "comment": 39,
+                    "filename": "server.js"
+                }
+            ]
+        }
+    ]
+}
