@@ -1,0 +1,20 @@
+IMPORTANT: If you haven't setup Postgres yet, you must do so. Follow the configure-postgress-db.txt guide.
+
+== How to Setup VSC for Running Unit Tests ==
+1. Open up a PowerShell terminal (Terminal->New Terminal) and made sure your have all the latest dependencies by running `npm install`.
+2. Open the extensions pane and search for 'Test Explorer UI' and install it.
+3. You should now see the 'Testing' pane on the sidebar. You may need to restart VSC.
+4. IMPORTANT: In order to run the tests, the node.js server must be running. Start the server by running the `node server.js` command.
+5. You can click the run button at the top to run all the tests, or run a specific one. (Keep in mind, some tests may rely on other tests.)
+6. If a test fails, you can click on it and see why in the console.
+6. CTRL+C kills the node server.
+
+== Writing a Test ==
+1. All tests must go in the 'test' folder.
+2. It would probably be best to sort tests by route.
+3. See usage-views.js as a good example.
+4. The before(() => ) function runs code that "sets up" a test. It should have behavior that is needed before a test can run. In the usage-views.js example, it creates a session to be used while running the tests, as a session is needed for testing views.
+5. Then, each possible route is tested. Some tests check for results that match the input. For example, the parameterless GET route ensures there is at least one test.
+6. The POST is done first to create a new view page, and the ID is acquired.
+7. The DELETE is done last to remove the created view page.
+8. The after(() => ) function disposes of the created test session.
