@@ -18,7 +18,7 @@ describe('/users/online', () =>
         chai.request(host)
             .post('/api/monitoring/users/online')
             .set('content-type', 'application/json')
-            .send('{ "Login_Timestamp": 1636139551491 }')
+            .send('{ "Login_Timestamp": 1636139551491, "User_ID": 1 }')
             .end(function(err, res)
             {
                 res.should.have.status(201);
@@ -37,7 +37,8 @@ describe('/users/online', () =>
             .type('.json')
             .send
             ({
-                'Login_Timestamp': 1636139551491
+                'Login_Timestamp': 1636139551491,
+                "User_ID": 1
             })
             .end(function(err, res)
             {
