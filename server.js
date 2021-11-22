@@ -14,12 +14,12 @@ function parseData(data) {
     return {};
 }
 
-fastify.get(URL_Prefix + '/ping', async(req, res) => {
+fastify.get(URL_Prefix + '/ping', async (req, res) => {
 	res.code(200).send({ "Status": "Running" });
 });
 
 //#region Users_Registered methods
-fastify.get(URL_Prefix + '/users/registered', async(req, res) => {
+fastify.get(URL_Prefix + '/users/registered', async (req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
 		try {
 			let timeRange = parseInt(req.query.timerange);
@@ -42,7 +42,7 @@ fastify.get(URL_Prefix + '/users/registered', async(req, res) => {
 	}
 });
 
-fastify.get(URL_Prefix + '/users/registered/:id', async(req, res) => {
+fastify.get(URL_Prefix + '/users/registered/:id', async (req, res) => {
 	const results = await users.getRegisteredUser(req.params.id);
 	res.code(200).send({ results });
 });
@@ -72,7 +72,7 @@ fastify.delete(URL_Prefix + '/users/registered/:id', async (req, res) => {
 //#endregion
 
 //#region Users_Online methods
-fastify.get(URL_Prefix + '/users/online', async(req, res) => {
+fastify.get(URL_Prefix + '/users/online', async (req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
 		try {
 			let timeRange = parseInt(req.query.timerange);
@@ -131,7 +131,7 @@ fastify.delete(URL_Prefix + '/users/online/:id', async (req, res) => {
 //#endregion
 
 //#region Session methods
-fastify.get(URL_Prefix + '/usage/visits', async(req, res) => {
+fastify.get(URL_Prefix + '/usage/visits', async (req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
 		try {
 			let timeRange = parseInt(req.query.timerange);
@@ -184,7 +184,7 @@ fastify.delete(URL_Prefix + '/usage/visits/:id', async (req, res) => {
 //#endregion
 
 //#region Pages_Viewed
-fastify.get(URL_Prefix + '/usage/views', async(req, res) => {
+fastify.get(URL_Prefix + '/usage/views', async (req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
 		try {
 			let timeRange = parseInt(req.query.timerange);
@@ -243,7 +243,7 @@ fastify.delete(URL_Prefix + '/usage/views/:id', async (req, res) => {
 //#endregion
 
 //#region Pet_Sales
-fastify.get(URL_Prefix + '/sales/pets', async(req, res) => {
+fastify.get(URL_Prefix + '/sales/pets', async (req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
 		try {
 			let timeRange = parseInt(req.query.timerange);
@@ -296,7 +296,7 @@ fastify.delete(URL_Prefix + '/sales/pets/:id', async (req, res) => {
 //#endregion
 
 //#region Product_Sales
-fastify.get(URL_Prefix + '/sales/products', async(req, res) => {
+fastify.get(URL_Prefix + '/sales/products', async (req, res) => {
 	if (req.query.timerange) { // 0 indicates get all. <0 is invalid --> get all
 		try {
 			let timeRange = parseInt(req.query.timerange);
