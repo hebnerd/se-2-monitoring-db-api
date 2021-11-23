@@ -13,6 +13,18 @@ describe('/users/online', () =>
 {
     let user_id = -1;
 
+    it('POST /users/registered -- for testing users online', (done) =>
+    {
+        chai.request(host)
+            .post('/api/monitoring/users/registered')
+            .set('content-type', 'application/json')
+            .send('{ "User_ID": 1, "Reg_Timestamp": 1636139551491 }')
+            .end(function()
+            {
+                done();
+            });
+    });
+
     it('POST /users/online', (done) =>
     {
         chai.request(host)
