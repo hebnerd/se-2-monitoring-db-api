@@ -3,7 +3,9 @@ This half of a semester long Software Engineering II project involved creating a
 Requires Python 3.9
 
 After downloading, run "npm install"
+
 Can be run using "/venv/Scripts/activate"
+
 Followed by "start ."
 
 REST Documentation:
